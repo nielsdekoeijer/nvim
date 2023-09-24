@@ -1,10 +1,11 @@
 -- global variables
-config_path = vim.fn.stdpath('config')
-init_path = config_path .. '/init.lua'
+Config_path = vim.fn.stdpath('config')
+Init_path = Config_path .. '/init.lua'
 
 -- load bindings
-dofile(config_path .. '/' .. 'defaults.lua')
-dofile(config_path .. '/' .. 'debug.lua')
-dofile(config_path .. '/' .. 'search.lua')
-dofile(config_path .. '/' .. 'grep.lua')
-dofile(config_path .. '/' .. 'keybinds.lua')
+dofile(Config_path .. '/' .. 'src/defaults.lua')
+dofile(Config_path .. '/' .. 'src/debug.lua')
+dofile(Config_path .. '/' .. 'src/search.lua')
+dofile(Config_path .. '/' .. 'src/grep.lua')
+dofile(Config_path .. '/' .. 'src/lsp.lua')
+dofile(Config_path .. '/' .. 'src/keybinds.lua')
