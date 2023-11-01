@@ -1,6 +1,6 @@
 -- search, aka homebrew telescope
 
-function Interactive_search()
+function Interactive_search(editorCommand)
     -- assert fzf installed
     if vim.fn.system("which fzf") == 1 then
         vim.api.nvim_out_write("command 'fzf' non-zero return, please install fzf!\n")
@@ -31,17 +31,20 @@ function Interactive_search()
     Log("running 'interactive_search' with cmd '" .. cmd .. "'")
 
     -- run
-    local job_id = vim.fn.termopen(cmd, { buffer = buf,
+    local _ = vim.fn.termopen(cmd, { buffer = buf,
         on_exit = function(_, exit_code)
             vim.api.nvim_win_close(0, true)
             Log("ran 'interactive_search' with exit code '" .. exit_code .. "'")
             if exit_code == 0 then
                 -- get output
-                local output = vim.api.nvim_buf_get_lines(buf, 0, 1, false)
+                Log("attempting to get output...")
+                local output = vim.api.nvim_buf_get_lines(buf, 0, 2, false)
+                Log("got output line 1: '" .. output[1] .. "'")
+                Log("got output line 2: '" .. output[2] .. "'")
 
                 -- parse output to vim command
-                local current_line = vim.fn.line('.')
-                local path = "e " .. dir_path .. "/" .. output[1]
+                -- local current_line = vim.fn.line('.')
+                local path = editorCommand .. dir_path .. "/" .. output[1] .. output[2]
                 Log("parsed into 'interactive_search' vim command '" .. path .. "'")
 
                 -- execute

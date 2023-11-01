@@ -40,19 +40,24 @@ vim.api.nvim_set_keymap('n'
 -- show debug log
 vim.api.nvim_set_keymap('n'
 , '<Leader>dl'
-, [[<Cmd>lua open_debug_buffer()<CR>]]
+, [[<Cmd>lua Open_debug_buffer()<CR>]]
 , { noremap = true, silent = true })
 
 -- interactive file search
 vim.api.nvim_set_keymap('n'
 , '<Leader>sf'
-, [[<Cmd>lua interactive_search()<CR>]]
+, [[<Cmd>lua Interactive_search("e")<CR>]]
+, { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n'
+, '<Leader>ss'
+, [[<Cmd>lua Interactive_search("vsp")<CR>]]
 , { noremap = true, silent = true })
 
 -- interactive file grep
 vim.api.nvim_set_keymap('n'
 , '<Leader>sg'
-, [[<Cmd>lua interactive_grep()<CR>]]
+, [[<Cmd>lua Interactive_grep()<CR>]]
 , { noremap = true, silent = true })
 
 -- lsp keybinds
