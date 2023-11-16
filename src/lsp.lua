@@ -1,6 +1,7 @@
 -- lua lsps
 dofile(Config_path .. '/src/' .. 'lsp/clangd.lua')
 dofile(Config_path .. '/src/' .. 'lsp/lua_ls.lua')
+dofile(Config_path .. '/src/' .. 'lsp/rustanalyzer_ls.lua')
 dofile(Config_path .. '/src/' .. 'lsp/python_ls.lua')
 
 -- always format on save
