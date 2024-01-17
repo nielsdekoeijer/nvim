@@ -1,7 +1,7 @@
 -- lsp configuration for clang
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
-    pattern = "cpp",
+    pattern = {"cpp", "c", "h"},
     callback = function()
         local search = vim.fs.find({ '.git' }, { upward = true })
         local root_dir = vim.fs.dirname(search[1])
