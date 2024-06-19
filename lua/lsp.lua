@@ -1,9 +1,9 @@
 -- lua lsps
-require 'clangd_ls'
-require 'lua_ls'
-require 'rustanalyzer_ls'
-require 'zig_ls'
-require 'python_ls'
+require 'lsp.clangd'
+require 'lsp.lua'
+require 'lsp.rust_analyzer'
+require 'lsp.zig'
+require 'lsp.python'
 
 -- always format on save
 vim.lsp.buf.format({ async = false })
