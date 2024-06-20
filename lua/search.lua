@@ -30,30 +30,22 @@ function Interactive_search(editorCommand, dir_path)
     end
     local cmd = "find "  .. dir_path .. " -type f 2>/dev/null | fzf"
 
-    Log("running 'interactive_search' with cmd '" .. cmd .. "'")
 
     -- run
     local _ = vim.fn.termopen(cmd, { buffer = buf,
         on_exit = function(_, exit_code)
             vim.api.nvim_win_close(0, true)
-            Log("ran 'interactive_search' with exit code '" .. exit_code .. "'")
             if exit_code == 0 then
                 -- get output
-                Log("attempting to get output...")
                 local output = vim.api.nvim_buf_get_lines(buf, 0, 2, false)
-                Log("got output line 1: '" .. output[1] .. "'")
-                Log("got output line 2: '" .. output[2] .. "'")
 
                 -- parse output to vim command
                 -- local current_line = vim.fn.line('.')
                 -- local path = editorCommand .. dir_path .. "/" .. output[1] .. output[2]
                 local path = editorCommand .. output[1] .. output[2]
-                Log("parsed into 'interactive_search' vim command '" .. path .. "'")
 
                 -- execute
                 vim.api.nvim_command(path)
-            else 
-                Log("error in 'interactive_search', non-zero exit code...")
             end
         end,
     })
